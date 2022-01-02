@@ -146,10 +146,8 @@ jobs:
 
             const {data} = await github.rest.pulls.listCommits({owner, repo, pull_number, per_page: 100});
             for (const item of data) {
-              console.log(item.sha);
               await execa.command(`gsutil -m rm -fr gs://${bucketName}/${item.sha}`).then(() => resolv()).catch(e => {});
             }
-
 
   cleanupVRT:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
