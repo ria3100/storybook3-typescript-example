@@ -226,4 +226,5 @@ jobs:
             const config = require('./regconfig.json');
             const bucketName = config.plugins['reg-publish-gcs-plugin'].bucketName;
 
-            execa.command(`gsutil cp -r ./__screenshots__ gs://${bucketName}/${context.sha}/actual`);
+            console.log(`gsutil -m cp ./__screenshots__ gs://${bucketName}/${context.sha}/actual`);
+            execa.command(`gsutil -m cp ./__screenshots__ gs://${bucketName}/${context.sha}/actual`);
